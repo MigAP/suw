@@ -1,4 +1,5 @@
-~
+*~
 *.o
-step.pdf
-step.dat
+*.pdf
+*.dat
+.tags
