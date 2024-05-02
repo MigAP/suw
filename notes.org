@@ -1,0 +1,37 @@
+#+title: Simulink the Unix Way
+#+startup: indent
+
+* time 
+Parameters:
+- i: initial time
+- f: final time
+- s: timestep
+  
+* step
+Requires a time stream as a vector
+
+Parameters
+- i: initial value
+- f: final value
+- t: step time
+  
+* disc-1-ord-filt
+Parameters:
+- a: pole of the first order filter
+- (i): initial value for the filter initialization
+  
+* z-tr-fc 
+Parameters
+- f: file describing the transfert function
+
+Format:
+N: b0 b1 ... bm
+D: a0 a1 ... an
+
+
+* TODO feedback/lsim
+- see how they do in octave
+
+
+* TODO Compilation
+- add C99 standard
