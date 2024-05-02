@@ -2,7 +2,7 @@
 
 /* Equality between floats: returns 1 if a == b, otherwise returns 0 */
 unsigned int
-is_equal(long double a, long double b )
+is_equal(double a, double b )
 {
      if ( fabsl(a - b) < EQUALITY_THRESHOLD ) {
 	  return 1; 

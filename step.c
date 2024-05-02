@@ -19,9 +19,9 @@ int
 main(int argc, char *argv[])
 {
 
-     long double vi = 0.0, vf = 0.0;     /* intial and final values */
-     long double st = 0.0;		 /* step time */
-     long double time; 
+     double vi = 0.0, vf = 0.0;     /* intial and final values */
+     double st = 0.0;		 /* step time */
+     double time; 
 
      int opt; 
      size_t linesize = 0; 
@@ -35,13 +35,13 @@ main(int argc, char *argv[])
      while ((opt = getopt(argc, argv, "i:f:t:")) != -1) {
 	  switch (opt) {
 	  case 'i':
-	       vi = strtold(optarg, NULL);
+	       vi = strtod(optarg, NULL);
 	       break;
 	  case 'f':
-	       vf = strtold(optarg, NULL);
+	       vf = strtod(optarg, NULL);
 	       break;
 	  case 't':
-	       st = strtold(optarg, NULL);
+	       st = strtod(optarg, NULL);
 	       break;
 
 	  default: /* '?' */
@@ -51,12 +51,12 @@ main(int argc, char *argv[])
      }
 
      while ( getline(&line, &linesize, stdin) > 0 ) {
-	  time = strtold(line, NULL); 
+	  time = strtod(line, NULL); 
 
 	  if ( time < st ) {
-	       printf("%Lf\t%Lf\n", time, vi); 
+	       printf("%f\t%f\n", time, vi); 
 	  } else {
-	       printf("%Lf\t%Lf\n", time, vf);
+	       printf("%f\t%f\n", time, vf);
 	  }
      }
 

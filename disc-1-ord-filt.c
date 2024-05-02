@@ -17,10 +17,10 @@ usage()
      fprintf(stderr, "Usage: step [-a alpha_value] [-i initial_value ]\n");
 }
 
-long double
-filter ( long double input, long double out_prev , long double a )
+double
+filter ( double input, double out_prev , double a )
 {
-     long double output;
+     double output;
 
      output = input * ( 1 - a ) + a * out_prev;
 
@@ -31,11 +31,11 @@ int
 main(int argc, char *argv[])
 {
 
-     long double alpha = 0;	/* pole of the filter */
-     long double out_prev = 0.0;
-     long double out_cur;
-     long double time;
-     long double input;
+     double alpha = 0;	/* pole of the filter */
+     double out_prev = 0.0;
+     double out_cur;
+     double time;
+     double input;
 
      int opt;
      size_t linesize = 0;
@@ -50,10 +50,10 @@ main(int argc, char *argv[])
      while ((opt = getopt(argc, argv, "a:i:")) != -1) {
 	  switch (opt) {
 	  case 'a':
-	       alpha = strtold(optarg, NULL);
+	       alpha = strtod(optarg, NULL);
 	       break;
 	  case 'i':
-	       out_prev = strtold(optarg, NULL);
+	       out_prev = strtod(optarg, NULL);
 	       break;
 	  default: /* '?' */
 	       usage();
@@ -79,13 +79,13 @@ main(int argc, char *argv[])
 	  }
 
 	  /* TODO: See z-tr-fc for error handling */
-	  time = strtold(coltime, NULL);
-	  input = strtold(colinput, NULL);
+	  time = strtod(coltime, NULL);
+	  input = strtod(colinput, NULL);
 
 	  out_cur = filter ( input, out_prev , alpha );
 	  out_prev = out_cur;
 
-	  printf("%Lf\t%Lf\t%Lf\n", time, input, out_cur);
+	  printf("%f\t%f\t%f\n", time, input, out_cur);
 
 
 	  free(coltime);

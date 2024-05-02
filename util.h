@@ -7,7 +7,7 @@
 
 #define EQUALITY_THRESHOLD (1e-12)		/* value used to test floats equality */
 
-unsigned int is_equal(long double a, long double b );
+unsigned int is_equal(double a, double b );
 char *get_col(char *line, unsigned int n);
 
 
