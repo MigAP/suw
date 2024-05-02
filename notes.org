@@ -35,3 +35,8 @@ D: a0 a1 ... an
 
 * TODO Compilation
 - add C99 standard
+
+  
+* TODO Todolist
+- [ ] use =double= everywhere
+- 

@@ -78,6 +78,7 @@ main(int argc, char *argv[])
 	       exit(EXIT_FAILURE);
 	  }
 
+	  /* TODO: See z-tr-fc for error handling */
 	  time = strtold(coltime, NULL);
 	  input = strtold(colinput, NULL);
 
