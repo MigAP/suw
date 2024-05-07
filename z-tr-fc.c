@@ -389,7 +389,7 @@ main(int argc, char *argv[])
      /* double input = 42.0; */
      size_t linesize = 0; 
      char *line = NULL; 
-     char *coltime = NULL, *colinput = NULL;
+     char *time_str = NULL, *input_str = NULL;
 
      int opt; 
      char *fname = NULL; 
@@ -459,24 +459,24 @@ main(int argc, char *argv[])
      putchar('\n');
 
      while ( getline(&line, &linesize, stdin) > 0 ) {
-	  coltime  = get_col(line, COL_TIME);
-	  colinput = get_col(line, COL_INPUT);
+	  time_str  = get_col(line, COL_TIME);
+	  input_str = get_col(line, COL_INPUT);
 
-	  if ( coltime  == NULL || colinput == NULL ) {
+	  if ( time_str  == NULL || input_str == NULL ) {
 	       fprintf(stderr, "Could not allocate memory for column selection");
 	       free(line);
 	       exit(EXIT_FAILURE);
 	  }
 
 	  /* TODO: See z-tr-fc for error handling */
-	  time = strtod(coltime, NULL);
-	  input = strtod(colinput, NULL);
+	  time = strtod(time_str, NULL);
+	  input = strtod(input_str, NULL);
 	  output = update_and_compute( &fc, input );
 
 	  printf("%f\t%f\t%f\n", time, input, output);
 
-	  free(colinput); 
-	  free(coltime);
+	  free(input_str); 
+	  free(time_str);
      }
      free(line); 
 

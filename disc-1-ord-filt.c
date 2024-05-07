@@ -40,7 +40,7 @@ main(int argc, char *argv[])
      int opt;
      size_t linesize = 0;
      char *line = NULL;
-     char *coltime = NULL, *colinput = NULL;
+     char *time_str = NULL, *input_str = NULL;
 
      if ( argc < MIN_ARGC ) {
 	  usage();
@@ -69,18 +69,18 @@ main(int argc, char *argv[])
      }
 
      while ( getline(&line, &linesize, stdin) > 0 ) {
-	  coltime  = get_col(line, COL_TIME);
-	  colinput = get_col(line, COL_INPUT);
+	  time_str  = get_col(line, COL_TIME);
+	  input_str = get_col(line, COL_INPUT);
 
-	  if ( coltime  == NULL || colinput == NULL ) {
+	  if ( time_str  == NULL || input_str == NULL ) {
 	       fprintf(stderr, "Could not allocate memory for column selection");
 	       free(line);
 	       exit(EXIT_FAILURE);
 	  }
 
 	  /* TODO: See z-tr-fc for error handling */
-	  time = strtod(coltime, NULL);
-	  input = strtod(colinput, NULL);
+	  time = strtod(time_str, NULL);
+	  input = strtod(input_str, NULL);
 
 	  out_cur = filter ( input, out_prev , alpha );
 	  out_prev = out_cur;
@@ -88,8 +88,8 @@ main(int argc, char *argv[])
 	  printf("%f\t%f\t%f\n", time, input, out_cur);
 
 
-	  free(coltime);
-	  free(colinput);
+	  free(time_str);
+	  free(input_str);
      }
 
      free(line);
