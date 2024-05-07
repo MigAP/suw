@@ -219,8 +219,10 @@ compute_output(struct ztrfc *fc, double input)
 	  output += fc->num[i] * fc->buf_inputs[i];
      }
 
+     /* buf_outputs[i-1] is used because it has not been updated
+      * yet */
      for (i = 1; i < fc->n_denom; i++) {
-	  output -= fc->denom[i] * fc->buf_outputs[i];
+	  output -= fc->denom[i] * fc->buf_outputs[i-1];
      }
 
 
