@@ -125,7 +125,7 @@ ztrfc_set_buf_outputs( struct ztrfc *fc, double denom[], size_t n_denom)
 }
 
 void
-ztrfc_set_buf_inputs_val ( struct ztrfc *fc, double val )
+ztrfc_set_buf_input_vals ( struct ztrfc *fc, double val )
 {
      size_t i;
      for (i = 0; i < fc->n_num ; i++) {
@@ -134,7 +134,7 @@ ztrfc_set_buf_inputs_val ( struct ztrfc *fc, double val )
 }
 
 void
-ztrfc_set_buf_outputs_val( struct ztrfc *fc, double val)
+ztrfc_set_buf_output_vals( struct ztrfc *fc, double val)
 {
      size_t i;
 
@@ -146,7 +146,8 @@ ztrfc_set_buf_outputs_val( struct ztrfc *fc, double val)
 
 
 void
-ztrfc_print( struct ztrfc *fc ) {
+ztrfc_print( struct ztrfc *fc )
+{
      int i;
 
      printf("N:\t");
@@ -183,8 +184,10 @@ ztrfc_free( struct ztrfc *fc )
      free(fc->buf_outputs);
 }
 
+/* updates the input buffer of "fc" by adding "input" at the beginning
+ * of the buffer. */
 void
-ztrfc_update_buf_inputs( struct ztrfc *fc, double input )
+ztrfc_update_inputs( struct ztrfc *fc, double input )
 {
      size_t i;
 
@@ -195,8 +198,10 @@ ztrfc_update_buf_inputs( struct ztrfc *fc, double input )
      fc->buf_inputs[0] = input;
 }
 
+/* updates the output buffer of "fc" by adding "input" at the
+ * beginning of the buffer. */
 void
-ztrfc_update_buf_outputs( struct ztrfc *fc, double input )
+ztrfc_update_outputs( struct ztrfc *fc, double input )
 {
      size_t i;
 
@@ -234,12 +239,13 @@ compute_output(struct ztrfc *fc, double input)
 /* updates fc with the new input, computes the output and updates fc
  * with the new output */
 double
-update_and_compute( struct ztrfc *fc, double input ) {
+update_and_compute( struct ztrfc *fc, double input )
+{
      double output;
 
-     ztrfc_update_buf_inputs(fc, input );
+     ztrfc_update_inputs(fc, input );
      output = compute_output(fc, input);
-     ztrfc_update_buf_outputs(fc, output );
+     ztrfc_update_outputs(fc, output );
 
      return output;
 }
@@ -247,7 +253,8 @@ update_and_compute( struct ztrfc *fc, double input ) {
 /* counts the number of tokens in string s, tokens are defined in
  * TOKEN_DELIM */
 size_t
-count_tokens(char *s ) {
+count_tokens(char *s )
+{
      char *stok = NULL;  
      char *tok = NULL; 
      size_t ntok = 0;  
