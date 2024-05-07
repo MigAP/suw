@@ -471,7 +471,7 @@ main(int argc, char *argv[])
 	  /* TODO: See z-tr-fc for error handling */
 	  time = strtod(coltime, NULL);
 	  input = strtod(colinput, NULL);
-	  output = update_and_compute( &fc, 54.0 );
+	  output = update_and_compute( &fc, input );
 
 	  printf("%f\t%f\t%f\n", time, input, output);
 
