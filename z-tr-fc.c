@@ -5,12 +5,17 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <errno.h>
+#include <unistd.h>
+#include "util.h"
 
 #define NUMERATOR_CHAR 'N'
 #define DENOMINATOR_CHAR 'D'
 #define TOKEN_DELIM " \t"	/* whitespace + tab */
 #define ERROR (-1) 
 #define SUCCESS (0) 
+#define COL_TIME (1)
+#define COL_INPUT (2)
+
 
 
 struct ztrfc {
@@ -380,8 +385,15 @@ main(int argc, char *argv[])
 {
 
      struct ztrfc fc;
-     double output;
-     double input = 42.0;
+     double time, input, output;  
+     /* double input = 42.0; */
+     size_t linesize = 0; 
+     char *line = NULL; 
+     char *coltime = NULL, *colinput = NULL;
+
+     int opt; 
+     char *fname = NULL; 
+     FILE *f_fc = NULL;
 
      /* double num[] = { 1.0, 2.0 };  */
      /* unsigned int n_num = 2;   */
@@ -404,9 +416,26 @@ main(int argc, char *argv[])
 
      /* ztrfc_free(&fc); */
 
-     /* import z-transfer function from file */
-     FILE *f_fc;
-     f_fc = fopen("z_fct.txt","r");
+
+     while ((opt = getopt(argc, argv, "f:")) != -1) {
+	  switch (opt) {
+	  case 'f':
+	       /* TODO: free fname */
+	       fname = strdup(optarg); 
+	       printf("File name passed by argument: %s\n", fname); 
+	       break;
+	  default: /* '?' */
+	       /* TODO: create usage function */
+	       fprintf(stderr, "Usage error\n"); 
+	       exit(EXIT_FAILURE);
+	  }
+     }
+
+     /* Import transfer function */
+     if ( strlen(fname) != 0 ) {
+	  f_fc = fopen(fname,"r");
+     }
+
      if (f_fc == NULL ) {
 	  fprintf(stderr, "Could not open the file\n");
 	  exit(EXIT_FAILURE);
@@ -419,39 +448,39 @@ main(int argc, char *argv[])
      putchar('\n');
 
 
-     /* initialize input and output buffer */
-     ztrfc_set_buf_inputs_val( &fc, 1.0);
-     ztrfc_set_buf_outputs_val( &fc, 2.0);
+     /* Initialize transfer function: initial input and output values
+      * are assumed to be equal to zero */
+     ztrfc_set_buf_input_vals( &fc, 0.0);
+     ztrfc_set_buf_output_vals( &fc, 0.0);
 
      printf("Input and output buffers initialization \n"); 
      ztrfc_print( &fc );
      putchar('\n');
      putchar('\n');
 
-     /* Measurement update  */
-     ztrfc_update_buf_inputs( &fc, input );
+     while ( getline(&line, &linesize, stdin) > 0 ) {
+	  coltime  = get_col(line, COL_TIME);
+	  colinput = get_col(line, COL_INPUT);
 
-     /* Ouput computation and transfert function update */
-     output = compute_output(&fc, input);
-     ztrfc_update_buf_outputs( &fc, output );
-     printf("New state:\n");
+	  if ( coltime  == NULL || colinput == NULL ) {
+	       fprintf(stderr, "Could not allocate memory for column selection");
+	       free(line);
+	       exit(EXIT_FAILURE);
+	  }
 
+	  /* TODO: See z-tr-fc for error handling */
+	  time = strtod(coltime, NULL);
+	  input = strtod(colinput, NULL);
+	  output = update_and_compute( &fc, 54.0 );
 
-     ztrfc_print( &fc );
-     putchar('\n');
-     putchar('\n');
+	  printf("%f\t%f\t%f\n", time, input, output);
 
-     /* Everything done before but in one function call */
-     printf("New new state:\n");
-
-     update_and_compute( &fc, 54.0 );
-
-     ztrfc_print( &fc );
-     putchar('\n');
-     putchar('\n');
+	  free(colinput); 
+	  free(coltime);
+     }
+     free(line); 
 
      ztrfc_free(&fc);
 
-     putchar('\n');
-     return 0;
+     exit(EXIT_SUCCESS);
 }
