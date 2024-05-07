@@ -1,4 +1,6 @@
-all: time step disc-1-ord-filt step.dat filt.dat step.pdf filt.pdf z-tr-fc
+all: time step disc-1-ord-filt z-tr-fc \
+	step.dat filt.dat z-tr-fc.dat \
+	step.pdf filt.pdf 
 
 CC=clang
 CFLAGS=-Wall -g -pedantic-errors -std=c99
@@ -26,6 +28,9 @@ step.dat:
 
 filt.dat:
 	./time -i 0 -f 10 -s 0.001 | ./step -i 3 -f 42 -t 5 | ./disc-1-ord-filt -a 0.95 -i 3 > filt.dat
+
+z-tr-fc.dat:
+	./time -i 0 -f 10 -s 0.001 | ./step -i 3 -f 42 -t 5 | ./z-tr-fc -f z_fct.txt > z-tr-fc.dat
 
 step.pdf: step.dat
 	gnuplot plot.gnu
