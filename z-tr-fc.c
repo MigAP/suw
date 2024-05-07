@@ -292,12 +292,12 @@ str_to_darr( char *s, double **da , size_t *nda)
 	  *da = (double *) malloc( (*nda) * sizeof(double) ); 
 
 	  if ( *da == NULL ) {
-	       fprintf(stderr, "Could not allocate double array\n"); 
+	       fprintf(stderr, "str_to_darr: unable to allocate array of doubles\n"); 
 	       return ERROR; 
 	  }
 
      } else {
-	  fprintf(stderr, "String has no tokens to parse\n");
+	  fprintf(stderr, "str_to_darr: string has no tokens to parse\n");
 	  return ERROR; 
      }
 
@@ -314,12 +314,12 @@ str_to_darr( char *s, double **da , size_t *nda)
 
 	  /* Check for various possible errors. */
 	  if (errno != 0) {
-	       fprintf(stderr, "Could not convert to double\n");
+	       fprintf(stderr, "str_to_darr: could not convert to double\n");
 	       return ERROR;
 	  }
 
 	  if (endptr == tok) {
-	       fprintf(stderr, "No digits were found\n");
+	       fprintf(stderr, "str_to_darr: no digits were found\n");
 	       return ERROR;
 	  }
 
@@ -333,7 +333,6 @@ str_to_darr( char *s, double **da , size_t *nda)
      return SUCCESS; 
 }
 
-/* TODO: finish function */
 int
 ztrfc_import(struct ztrfc *fc, FILE *f )
 {
@@ -350,28 +349,23 @@ ztrfc_import(struct ztrfc *fc, FILE *f )
 
 	  if ( *lineptr == NUMERATOR_CHAR ) {
 	       if( str_to_darr( ++lineptr, &num , &nnum) ) {
-		    /* TODO: print file name */
-		    fprintf(stderr, "Could not parse line from file ... \n"); 
+		    fprintf(stderr, "ztrfc_import: could not parse line from file\n"); 
 		    return ERROR;
 	       }
 	  } else if ( *lineptr == DENOMINATOR_CHAR ) {
-	       /* printf("Denominator: \n");  */
-	       /* printf("size: %ld, string: %s\n", line_size, (lineptr+1)); */
-
 	       if( str_to_darr( ++lineptr, &denom , &ndenom) ) {
-		    /* TODO: print file name */
-		    fprintf(stderr, "Could not parse line from file ... \n"); 
+		    fprintf(stderr, "ztrfc_import: could not parse line from file\n"); 
 		    return ERROR;
 	       }
 	  } else {
-	       fprintf(stderr, "Unknown line identifier %s: \n", lineptr); 
+	       fprintf(stderr, "ztrfc_import: unknown line identifier %s: \n", lineptr); 
 	       return ERROR;
 	  }
 
      }
 
      if ( ztrfc_allocate(fc, nnum, ndenom) ) {
-	  fprintf(stderr, "Could not allocate transfer function\n"); 
+	  fprintf(stderr, "ztrfc_import: unable to allocate transfer function\n"); 
 	  return ERROR; 
      }
 
