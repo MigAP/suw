@@ -38,5 +38,6 @@ D: a0 a1 ... an
 
   
 * TODO Todolist
-- [ ] use =double= everywhere
-- 
+- [X] use =double= everywhere
+- [ ] check error for conversion from string to double
+- [ ] Unit test functions (see how numtools test its functions)
