@@ -20,7 +20,7 @@ Parameters:
 - a: pole of the first order filter
 - (i): initial value for the filter initialization
   
-* z-tf
+* z-tr-fc
 Parameters
 - f: file describing the transfert function
 - i: initial output value 
@@ -29,11 +29,8 @@ Format:
 N: b0 b1 ... bm
 D: a0 a1 ... an
 
-- [ ] finish adding parameters
 - [ ] add usage function
 - [ ] better error handling
-- [ ] put all the transfer function into a separate header file so
-  that they can be used by other tools
 
 * z-cl 
 Parameters:
@@ -55,6 +52,6 @@ Parameters:
 - [ ] check error for conversion from string to double
 - [ ] Unit test functions (see how numtools test its functions)
 - [ ] man pages documentation
-- [ ] improve makefile: separate project compilation and simulations
+- [X] improve makefile: separate project compilation and simulations
 - [ ] Example for the control of a continuous motor with discretized
   model.
