@@ -13,6 +13,12 @@
 #define COL_TIME (1)
 #define COL_INPUT (2)
 
+static void
+usage()
+{
+     fprintf(stderr, "Usage: z-tr-fc [-f path to transfer function]\n [-i initial output value]\n");
+}
+
 int
 main(int argc, char *argv[])
 {
@@ -39,7 +45,7 @@ main(int argc, char *argv[])
 	       break;
 
 	  default: /* '?' */
-	       /* TODO: create usage function */
+	       usage(); 
 	       fprintf(stderr, "Usage error\n"); 
 	       exit(EXIT_FAILURE);
 	  }

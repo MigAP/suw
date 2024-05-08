@@ -8,6 +8,13 @@
 #define COL_TIME (1)
 #define COL_REF (2)
 
+static void
+usage()
+{
+     fprintf(stderr, "Usage: z-cl [-c controller transfer function]\n [-s system transfer function]\n [-i system initial output value]\n [-j controller initial output value ]\n");
+}
+
+
 double
 compute_error(double ref, double output)
 {
@@ -51,7 +58,7 @@ main(int argc, char *argv[])
 	       /* printf("controller initial value argument passed\n");  */
 	       break;
 	  default: /* '?' */
-	       /* TODO: create usage function */
+	       usage();
 	       fprintf(stderr, "Usage error\n"); 
 	       exit(EXIT_FAILURE);
 	  }
