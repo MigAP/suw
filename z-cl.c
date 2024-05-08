@@ -43,7 +43,7 @@ main(int argc, char *argv[])
      ztf_set_buf_input_vals(&cf, 0.0); 
      ztf_set_buf_output_vals(&cf, 0.0); 
 
-     printf("System trancfer function\n"); 
+     printf("System transfer function\n"); 
      ztf_print( &cf );
      putchar('\n');
      putchar('\n');
