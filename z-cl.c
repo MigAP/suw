@@ -1,6 +1,12 @@
+#define _POSIX_C_SOURCE 200809L
+
 #include <stdio.h>
+#include <unistd.h>
 
 #include "z-tf.h"
+
+#define COL_TIME (1)
+#define COL_REF (2)
 
 double
 compute_error(double ref, double output)
@@ -12,57 +18,107 @@ int
 main(int argc, char *argv[])
 {
 
-     /* system transfer function */
+     /* system and controller transfer functions */
      struct ztf sf; 
-     double s_n[] = { 0.05 }; /* numerator */
-     unsigned int s_nn = 1;	  /* numerator size */
-     double s_d[] = { 1.0, -0.95}; /* denominator */
-     unsigned int s_nd= 2;	      /* denominator size */
-
-     ztf_allocate(&sf, s_nn, s_nd); 
-     ztf_set_num(&sf, s_n, s_nn); 
-     ztf_set_denom(&sf, s_d, s_nd); 
-     ztf_set_buf_input_vals(&sf, 0.0); 
-     ztf_set_buf_output_vals(&sf, 0.0); 
-
-     printf("System transfer function\n"); 
-     ztf_print( &sf );
-     putchar('\n');
-     putchar('\n');
-
-     /* controller transfer function */
      struct ztf cf; 
-     double c_n[] = { 2.0 }; /* numerator */
-     unsigned int c_nn = 1;	  /* numerator size */
-     double c_d[] = { 1.0 }; /* denominator */
-     unsigned int c_nd= 1;	      /* denominator size */
+     size_t linesize; 
+     char *line = NULL; 
+     char *time_str = NULL, *reference_str = NULL;
+     double s_init_v = 0.0, c_init_v = 0.0; 	/* intial output values */
 
-     ztf_allocate(&cf, c_nn, c_nd); 
-     ztf_set_num(&cf, c_n, c_nn); 
-     ztf_set_denom(&cf, c_d, c_nd); 
+     int opt;
+     char* sfname = NULL, *cfname = NULL; 
+     FILE *sfile = NULL, *cfile = NULL; 
+
+     while ((opt = getopt(argc, argv, "c:s:i:j:")) != -1) {
+	  switch (opt) {
+	  case 'c':
+	       /* TODO: free fname */
+	       cfname = strdup(optarg); 
+	       printf("File name passed by argument: %s\n", cfname); 
+	       break;
+	  case 's':
+	       /* TODO: free sfname */
+	       sfname = strdup(optarg); 
+	       printf("File name passed by argument: %s\n", sfname); 
+	       break;
+	  case 'i':
+	       s_init_v = strtod(optarg, NULL); 
+	       printf("System initial value argument passed\n"); 
+	       break;
+	  case 'j':
+	       c_init_v = strtod(optarg, NULL); 
+	       printf("controller initial value argument passed\n"); 
+	       break;
+	  default: /* '?' */
+	       /* TODO: create usage function */
+	       fprintf(stderr, "Usage error\n"); 
+	       exit(EXIT_FAILURE);
+	  }
+     }    
+     /* Import system and controller transfer functions */
+     if ( strlen(sfname) != 0 ) {
+	  sfile = fopen(sfname, "r"); 
+     }
+
+     if ( sfile == NULL ) {
+	  fprintf(stderr, "Unable to open system transfer function file\n"); 
+     }
+     ztf_import(&sf, sfile);
+     fclose(sfile);
+     free(sfname); 
+
+     if ( strlen(cfname) != 0 ) {
+	  cfile = fopen(cfname, "r"); 
+     }
+
+     if ( cfile == NULL ) {
+	  fprintf(stderr, "Unable to open controller transfer function file\n"); 
+     }
+     ztf_import(&cf, cfile);
+     fclose(cfile);
+     free(cfname); 
+
+     /* Initialize transfer function with null values for the inputs
+      * and outputs */
+     ztf_set_buf_input_vals(&sf, 0.0); 
+     ztf_set_buf_output_vals ( &sf, s_init_v );
+
      ztf_set_buf_input_vals(&cf, 0.0); 
-     ztf_set_buf_output_vals(&cf, 0.0); 
+     ztf_set_buf_output_vals ( &cf, c_init_v );
 
-     printf("System transfer function\n"); 
-     ztf_print( &cf );
-     putchar('\n');
-     putchar('\n');
+     printf("Controller transfer function: \n");
+     ztf_print(&cf);
+     printf("\n\n"); 
 
-     /* Given a new reference we must:
-      * 1. update and compute controller input and output
-      * 2. update and compute system input and output 
-     */
-     unsigned int i, steps = 10; 
-     double reference = 1; 
-     double output = 0.0; 
-     double error = 0, control = 0; 
+     printf("System transfer function: \n");
+     ztf_print(&sf);
+     printf("\n\n"); 
 
-     for (i = 0; i < steps; i++) {
-	  printf("step: %d, reference: %f, error: %f, control: %f, output: %f\n",
-		 i, reference, error, control, output); 
-	  error = compute_error(reference, output);  
+
+     double time = 0.0, reference = 0.0, error = 0, control = 0;
+     double output = s_init_v; 	/* intial system output */
+
+     while ( getline(&line, &linesize, stdin) > 0 ) {
+	  time_str = get_col(line, COL_TIME); 
+	  reference_str = get_col(line, COL_REF); 
+
+	  if ( time_str  == NULL || reference_str == NULL ) {
+	       fprintf(stderr, "Unable to allocate memory for column selection");
+	       free(line);
+	       exit(EXIT_FAILURE);
+	  }
+	  time = strtod(time_str, NULL);
+	  reference = strtod(reference_str, NULL);
+
+	  error = compute_error(reference, output); 
 	  control = ztf_update_and_compute(&cf, error); 
 	  output = ztf_update_and_compute(&sf, control); 
+
+	  printf("%f\t%f\t%f\t%f\n", time, reference, control, output);
+
+	  free(time_str);
+	  free(reference_str); 
      }
 
      ztf_free(&sf);
