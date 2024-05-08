@@ -32,7 +32,7 @@ main(int argc, char *argv[])
 	  switch (opt) {
 	  case 'f':
 	       fname = strdup(optarg); 
-	       printf("File name passed by argument: %s\n", fname); 
+	       /* printf("File name passed by argument: %s\n", fname);  */
 	       break;
 	  case 'i':
 	       i_out = strtod(optarg, NULL);
@@ -57,10 +57,10 @@ main(int argc, char *argv[])
      ztf_import(&fc, f_fc);
      free(fname); 
      fclose(f_fc);
-     printf("Imported transfer function: \n"); 
-     ztf_print( &fc );
-     putchar('\n');
-     putchar('\n');
+     /* printf("Imported transfer function: \n");  */
+     /* ztf_print( &fc ); */
+     /* putchar('\n'); */
+     /* putchar('\n'); */
 
 
      /* Initialize transfer function: initial input and output values
@@ -68,10 +68,10 @@ main(int argc, char *argv[])
      ztf_set_buf_input_vals( &fc, 0.0);
      ztf_set_buf_output_vals( &fc, i_out);
 
-     printf("Input and output buffers initialization \n"); 
-     ztf_print( &fc );
-     putchar('\n');
-     putchar('\n');
+     /* printf("Input and output buffers initialization \n");  */
+     /* ztf_print( &fc ); */
+     /* putchar('\n'); */
+     /* putchar('\n'); */
 
      while ( getline(&line, &linesize, stdin) > 0 ) {
 	  time_str  = get_col(line, COL_TIME);

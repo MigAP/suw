@@ -35,20 +35,20 @@ main(int argc, char *argv[])
 	  case 'c':
 	       /* TODO: free fname */
 	       cfname = strdup(optarg); 
-	       printf("File name passed by argument: %s\n", cfname); 
+	       /* printf("File name passed by argument: %s\n", cfname);  */
 	       break;
 	  case 's':
 	       /* TODO: free sfname */
 	       sfname = strdup(optarg); 
-	       printf("File name passed by argument: %s\n", sfname); 
+	       /* printf("File name passed by argument: %s\n", sfname);  */
 	       break;
 	  case 'i':
 	       s_init_v = strtod(optarg, NULL); 
-	       printf("System initial value argument passed\n"); 
+	       /* printf("System initial value argument passed\n");  */
 	       break;
 	  case 'j':
 	       c_init_v = strtod(optarg, NULL); 
-	       printf("controller initial value argument passed\n"); 
+	       /* printf("controller initial value argument passed\n");  */
 	       break;
 	  default: /* '?' */
 	       /* TODO: create usage function */
@@ -87,13 +87,13 @@ main(int argc, char *argv[])
      ztf_set_buf_input_vals(&cf, 0.0); 
      ztf_set_buf_output_vals ( &cf, c_init_v );
 
-     printf("Controller transfer function: \n");
-     ztf_print(&cf);
-     printf("\n\n"); 
+     /* printf("Controller transfer function: \n"); */
+     /* ztf_print(&cf); */
+     /* printf("\n\n");  */
 
-     printf("System transfer function: \n");
-     ztf_print(&sf);
-     printf("\n\n"); 
+     /* printf("System transfer function: \n"); */
+     /* ztf_print(&sf); */
+     /* printf("\n\n");  */
 
 
      double time = 0.0, reference = 0.0, error = 0, control = 0;
