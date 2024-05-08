@@ -19,21 +19,25 @@ main(int argc, char *argv[])
 
      struct ztf fc;
      double time, input, output;  
-     /* double input = 42.0; */
      size_t linesize = 0; 
      char *line = NULL; 
      char *time_str = NULL, *input_str = NULL;
+     double i_out = 0.0;  		/* intial output */
 
      int opt; 
      char *fname = NULL; 
      FILE *f_fc = NULL;
 
-     while ((opt = getopt(argc, argv, "f:")) != -1) {
+     while ((opt = getopt(argc, argv, "f:i:")) != -1) {
 	  switch (opt) {
 	  case 'f':
 	       fname = strdup(optarg); 
 	       printf("File name passed by argument: %s\n", fname); 
 	       break;
+	  case 'i':
+	       i_out = strtod(optarg, NULL);
+	       break;
+
 	  default: /* '?' */
 	       /* TODO: create usage function */
 	       fprintf(stderr, "Usage error\n"); 
@@ -62,7 +66,7 @@ main(int argc, char *argv[])
      /* Initialize transfer function: initial input and output values
       * are assumed to be equal to zero */
      ztf_set_buf_input_vals( &fc, 0.0);
-     ztf_set_buf_output_vals( &fc, 0.0);
+     ztf_set_buf_output_vals( &fc, i_out);
 
      printf("Input and output buffers initialization \n"); 
      ztf_print( &fc );
