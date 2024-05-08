@@ -15,12 +15,12 @@ Parameters
 - f: final value
 - t: step time
   
-* disc-1-ord-filt
+* z-1-ord-filt
 Parameters:
 - a: pole of the first order filter
 - (i): initial value for the filter initialization
   
-* z-tr-fc 
+* z-tf
 Parameters
 - f: file describing the transfert function
 - i: initial output value 
@@ -35,14 +35,18 @@ D: a0 a1 ... an
 - [ ] put all the transfer function into a separate header file so
   that they can be used by other tools
 
-* TODO feedback/lsim
-- see how they do in octave
-
+* z-cl 
 Parameters:
+- c: path to the file describing the controller transfert function
 - s: path to the file describing the system transfert function
-- c: path to the file describing the system transfert function
+- i: system initial ouput value
+- j: controller initial ouput value
   
   
+  
+* TODO z-pid
+Parameters: 
+- s: path to the system transfert function
 * Quantizer 
 Parameters:
 - r: resolution
@@ -52,3 +56,5 @@ Parameters:
 - [ ] Unit test functions (see how numtools test its functions)
 - [ ] man pages documentation
 - [ ] improve makefile: separate project compilation and simulations
+- [ ] Example for the control of a continuous motor with discretized
+  model.
