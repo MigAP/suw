@@ -31,7 +31,6 @@ main(int argc, char *argv[])
      while ((opt = getopt(argc, argv, "f:")) != -1) {
 	  switch (opt) {
 	  case 'f':
-	       /* TODO: free fname */
 	       fname = strdup(optarg); 
 	       printf("File name passed by argument: %s\n", fname); 
 	       break;
@@ -52,6 +51,7 @@ main(int argc, char *argv[])
 	  exit(EXIT_FAILURE);
      }
      ztf_import(&fc, f_fc);
+     free(fname); 
      fclose(f_fc);
      printf("Imported transfer function: \n"); 
      ztf_print( &fc );
