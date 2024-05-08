@@ -20,8 +20,8 @@ step: step.o util.o
 disc-1-ord-filt: disc-1-ord-filt.o util.o
 	$(CC) -o disc-1-ord-filt disc-1-ord-filt.o util.o
 
-z-tr-fc: z-tr-fc.o util.o
-	$(CC) -o z-tr-fc z-tr-fc.o util.o
+z-tr-fc: z-tr-fc.o util.o z-tf.o
+	$(CC) -o z-tr-fc z-tr-fc.o util.o z-tf.o
 
 z-cl: z-cl.o util.o z-tf.o
 	$(CC) -o z-cl z-cl.o util.o z-tf.o
