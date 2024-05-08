@@ -1,4 +1,4 @@
-all: time step disc-1-ord-filt z-tr-fc \
+all: time step disc-1-ord-filt z-tr-fc z-cl \
 	step.dat filt.dat z-tr-fc.dat \
 	step.pdf filt.pdf 
 
@@ -22,6 +22,9 @@ disc-1-ord-filt: disc-1-ord-filt.o util.o
 
 z-tr-fc: z-tr-fc.o util.o
 	$(CC) -o z-tr-fc z-tr-fc.o util.o
+
+z-cl: z-cl.o util.o z-tf.o
+	$(CC) -o z-cl z-cl.o util.o z-tf.o
 
 step.dat:
 	./time -i 0 -f 10 -s 1 | ./step -i 3 -f 42 -t 5 > step.dat
