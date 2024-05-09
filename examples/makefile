@@ -1,5 +1,5 @@
 all: step.dat filt.dat z-tr-fc.dat z-cl.dat\
-     step.pdf filt.pdf 
+     step.pdf filt.pdf z-cl.pdf
 
 step.dat:
 	../time -i 0 -f 10 -s 1 | ../step -i 3 -f 42 -t 5 > step.dat
@@ -11,9 +11,9 @@ z-tr-fc.dat:
 	../time -i 0 -f 10 -s 0.001 | ../step -i 3 -f 42 -t 5 | ../z-tr-fc -f z_fct.txt > z-tr-fc.dat
 
 z-cl.dat:
-	../time -i 0 -f 10 -s 0.001 | \
-	../step -i 3 -f 42 -t 5 | \
-	../z-cl -s s_tf.txt -c c_tf.txt -i 1.0 -j 2.0 > z-cl.dat
+	../time -i 0 -f 1 -s 0.001 | \
+	../step -i 0 -f 1 -t 0.5 | \
+	../z-cl -s s_tf.txt -c c_tf.txt -i 0.0 -j 0.0 > z-cl.dat
 
 step.pdf: step.dat
 	gnuplot plot_step.gnu
@@ -21,5 +21,8 @@ step.pdf: step.dat
 filt.pdf:
 	gnuplot plot_filt.gnu 
 
+z-cl.pdf:
+	gnuplot plot_cl.gnu
+
 clear:
-	rm step.dat step.pdf filt.dat filt.pdf z-cl.dat
+	rm *.dat *.pdf
