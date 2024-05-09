@@ -118,14 +118,14 @@ main(int argc, char *argv[])
 	  time = strtod(time_str, NULL);
 	  reference = strtod(reference_str, NULL);
 
-	  error = compute_error(reference, output); 
-	  control = ztf_update_and_compute(&cf, error); 
-	  output = ztf_update_and_compute(&sf, control); 
+	  error = compute_error(reference, output);
+	  control = ztf_update_and_compute(&cf, error);
+	  output = ztf_update_and_compute(&sf, control);
 
-	  printf("%f\t%f\t%f\t%f\n", time, reference, control, output);
+	  printf("%f\t%f\t%f\t%f\t%f\n", time, reference, error, control, output);
 
 	  free(time_str);
-	  free(reference_str); 
+	  free(reference_str);
      }
 
      ztf_free(&sf);
