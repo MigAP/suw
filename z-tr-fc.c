@@ -10,6 +10,7 @@
 #include "util.h"
 #include "z-tf.h"
 
+#define MIN_ARGC (2)				/* minimal number of arguments */
 #define COL_TIME (1)
 #define COL_INPUT (2)
 
@@ -33,6 +34,12 @@ main(int argc, char *argv[])
      int opt; 
      char *fname = NULL; 
      FILE *f_fc = NULL;
+
+     if ( argc < MIN_ARGC ) {
+	  usage();
+	  exit(EXIT_FAILURE);
+     }
+
 
      while ((opt = getopt(argc, argv, "f:i:")) != -1) {
 	  switch (opt) {

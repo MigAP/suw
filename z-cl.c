@@ -5,6 +5,7 @@
 
 #include "z-tf.h"
 
+#define MIN_ARGC (4)				/* minimal number of arguments */
 #define COL_TIME (1)
 #define COL_REF (2)
 
@@ -36,6 +37,11 @@ main(int argc, char *argv[])
      int opt;
      char* sfname = NULL, *cfname = NULL;
      FILE *sfile = NULL, *cfile = NULL;
+
+     if ( argc < MIN_ARGC ) {
+	  usage();
+	  exit(EXIT_FAILURE);
+     }
 
      while ((opt = getopt(argc, argv, "c:s:i:j:")) != -1) {
 	  switch (opt) {
