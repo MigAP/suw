@@ -16,7 +16,7 @@ z-cl.dat:
 	../z-cl -s s_tf.txt -c c_tf.txt -i 1.0 -j 2.0 > z-cl.dat
 
 step.pdf: step.dat
-	gnuplot plot.gnu
+	gnuplot plot_step.gnu
 
 filt.pdf:
 	gnuplot plot_filt.gnu 
