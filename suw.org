@@ -29,7 +29,6 @@ Format:
 N: b0 b1 ... bm
 D: a0 a1 ... an
 
-- [ ] add usage function
 - [ ] better error handling
 
 * z-cl 
@@ -53,5 +52,8 @@ Parameters:
 - [X] improve makefile: separate project compilation and simulations
 - [ ] Example for the control of a continuous motor with discretized
   model.
-- [ ] Fix segfault when =z-tr-fc= and =z-cl= are called without
+- [X] Fix segfault when =z-tr-fc= and =z-cl= are called without
   arguments.
+- [X] Add a parameter to specify the desired precision for a program
+  (see how numtools handles-it)
+  - =printf("%.*g", prec, val);=
