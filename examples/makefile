@@ -2,13 +2,13 @@ all: step.dat filt.dat z-tr-fc.dat z-cl.dat\
      step.pdf filt.pdf z-cl.pdf
 
 step.dat:
-	../time -i 0 -f 10 -s 1 | ../step -i 3 -f 42 -t 5 > step.dat
+	../time -i 0 -f 10 -s 0.01 | ../step -i 0 -f 2 -t 5 > step.dat
 
 filt.dat:
-	../time -i 0 -f 10 -s 0.001 | ../step -i 3 -f 42 -t 5 | ../disc-1-ord-filt -a 0.95 -i 3 > filt.dat
+	../time -i 0 -f 10 -s 0.001 | ../step -i 2 -f 3 -t 5 | ../disc-1-ord-filt -a 0.95 -i 2 > filt.dat
 
 z-tr-fc.dat:
-	../time -i 0 -f 10 -s 0.001 | ../step -i 3 -f 42 -t 5 | ../z-tr-fc -f z_fct.txt > z-tr-fc.dat
+	../time -i 0 -f 10 -s 0.001 | ../step -i 0 -f 2 -t 5 | ../z-tr-fc -f z_fct.txt > z-tr-fc.dat
 
 z-cl.dat:
 	../time -i 0 -f 1 -s 0.001 | \
