@@ -6,7 +6,6 @@
 #include <string.h>
 #include "util.h"
 
-
 #define MIN_ARGC (7)				/* minimal number of arguments */
 
 static void
@@ -54,9 +53,9 @@ main(int argc, char *argv[])
 	  time = strtod(line, NULL); 
 
 	  if ( time < st ) {
-	       printf("%f\t%f\n", time, vi); 
+	       printf("%2$.*1$g\t%3$.*1$g\n", PRECISION, time, vi);
 	  } else {
-	       printf("%f\t%f\n", time, vf);
+	       printf("%2$.*1$g\t%3$.*1$g\n", PRECISION, time, vf);
 	  }
      }
 

@@ -101,7 +101,7 @@ main(int argc, char *argv[])
 	  input = strtod(input_str, NULL);
 	  output = ztf_update_and_compute( &fc, input );
 
-	  printf("%f\t%f\t%f\n", time, input, output);
+	  printf("%2$.*1$g\t%3$.*1$g\t%4$.*1$g\n", PRECISION, time, input, output);
 
 	  free(input_str); 
 	  free(time_str);

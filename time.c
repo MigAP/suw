@@ -60,7 +60,7 @@ main(int argc, char *argv[])
      }
 
      for (t=ti; !is_equal(t, tf+ts) ; t += ts) {
-	  printf("%f\n", t);
+	  printf("%.*g\n",PRECISION, t);
      }
      exit(EXIT_SUCCESS);
 }
