@@ -1,4 +1,4 @@
-all: time step disc-1-ord-filt z-tr-fc z-cl \
+all: time step disc-1-ord-filt z-tr-fc z-cl tests \
 
 CC=clang
 CFLAGS=-Wall -g -pedantic-errors -std=c99
@@ -23,5 +23,9 @@ z-tr-fc: z-tr-fc.o util.o z-tf.o
 
 z-cl: z-cl.o util.o z-tf.o
 	$(CC) -o z-cl z-cl.o util.o z-tf.o
+
+tests: tests.o
+	$(CC) -o tests tests.o
+
 clear:
 	rm *.o step time z-tr-fc z-cl
