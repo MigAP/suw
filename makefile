@@ -25,7 +25,7 @@ z-cl: z-cl.o util.o z-tf.o
 	$(CC) -o z-cl z-cl.o util.o z-tf.o
 
 tests: tests.o
-	$(CC) -o tests tests.o
+	$(CC) -o tests tests.o util.o z-tf.o
 
 clear:
 	rm *.o step time z-tr-fc z-cl
