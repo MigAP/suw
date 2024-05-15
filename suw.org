@@ -57,3 +57,4 @@ Parameters:
 - [X] Add a parameter to specify the desired precision for a program
   (see how numtools handles-it)
   - =printf("%.*g", prec, val);=
+- [ ] Solve compilation warnings from the modified compiler flags
