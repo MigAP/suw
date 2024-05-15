@@ -1,7 +1,7 @@
 all: time step disc-1-ord-filt z-tr-fc z-cl tests \
 
 CC=clang
-CFLAGS=-Wall -g -pedantic-errors -std=c99
+CFLAGS=-Wall -Wextra -g -pedantic-errors -std=c99
 # CFLAGS=-Wall -g -pedantic-errors 
 LIBS= -lm
 DEPS= util.h z-tf.h
