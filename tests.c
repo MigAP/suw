@@ -28,10 +28,10 @@ int main(int argc, char *argv[])
      ztf_set_buf_input_vals(&sf, initial_value);
      ztf_set_buf_output_vals(&sf, initial_value);
 
-     printf("System transfer function\n");
-     ztf_print( &sf );
-     putchar('\n');
-     putchar('\n');
+     /* printf("System transfer function\n"); */
+     /* ztf_print( &sf ); */
+     /* putchar('\n'); */
+     /* putchar('\n'); */
 
 
      size_t i;
@@ -92,10 +92,10 @@ int main(int argc, char *argv[])
      ztf_set_buf_inputs(&cf, c_i_i, c_nn);
      ztf_set_buf_outputs(&cf, c_i_o, c_nd);
 
-     printf("Controller transfer function\n");
-     ztf_print( &cf );
-     putchar('\n');
-     putchar('\n');
+     /* printf("Controller transfer function\n"); */
+     /* ztf_print( &cf ); */
+     /* putchar('\n'); */
+     /* putchar('\n'); */
 
      input = 6.0;
      output = ztf_update_and_compute(&cf, input); 
@@ -115,10 +115,10 @@ int main(int argc, char *argv[])
      ztf_set_buf_input_vals( &tf_imported, 0.0);
      ztf_set_buf_output_vals( &tf_imported, 1.0);
 
-     printf("Imported transfer function\n");
-     ztf_print( &tf_imported );
-     putchar('\n');
-     putchar('\n');
+     /* printf("Imported transfer function\n"); */
+     /* ztf_print( &tf_imported ); */
+     /* putchar('\n'); */
+     /* putchar('\n'); */
 
 
      input = 1.0;
