@@ -46,7 +46,7 @@ void ztf_free( struct ztf *fc );
 void ztf_update_inputs( struct ztf *fc, double input );
 
 
-/* updates the output buffer of "fc" by adding "input" at the
+/* updates the output buffer of "fc" by adding "output" at the
  * beginning of the buffer. */
 void ztf_update_outputs( struct ztf *fc, double input );
 
