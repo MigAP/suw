@@ -48,7 +48,7 @@ void ztf_update_inputs( struct ztf *fc, double input );
 
 /* updates the output buffer of "fc" by adding "output" at the
  * beginning of the buffer. */
-void ztf_update_outputs( struct ztf *fc, double input );
+void ztf_update_outputs( struct ztf *fc, double output );
 
 
 /* the new input is assumed to be already in fc, so there is no need
