@@ -6,7 +6,7 @@
 #include "z-tf.h"
 
 
-int main(int argc, char *argv[])
+int main()
 {
 
      /* util.h tests */
@@ -52,21 +52,20 @@ int main(int argc, char *argv[])
 	  assert( is_equal(sf.buf_outputs[i], initial_value) );
      }
 
-     assert( is_equal(ztf_compute_output(&sf, 0), 0) );
+     assert( is_equal(ztf_compute_output(&sf), 0) );
 
      double input = 1.0;
      double output;
 
      ztf_update_inputs(&sf, input);
-
-     output = ztf_compute_output(&sf, input);
+     output = ztf_compute_output(&sf);
      assert( is_equal(output, 1.0) );
 
      ztf_update_outputs(&sf, output);
 
      input = 0.0;
      ztf_update_inputs(&sf, input);
-     output =  ztf_compute_output(&sf, 0.0);
+     output =  ztf_compute_output(&sf);
      assert( is_equal(output, -1.0 ) );
 
      ztf_set_buf_input_vals(&sf, 0.0);

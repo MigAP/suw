@@ -53,7 +53,7 @@ void ztf_update_outputs( struct ztf *fc, double output );
 
 /* the new input is assumed to be already in fc, so there is no need
  * to update fc buffers */
-double ztf_compute_output(struct ztf *fc, double input);
+double ztf_compute_output(struct ztf *fc);
 
 
 /* updates fc with the new input, computes the output and updates fc

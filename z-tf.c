@@ -122,7 +122,7 @@ ztf_set_buf_output_vals( struct ztf *fc, double val)
 void
 ztf_print( struct ztf *fc )
 {
-     int i;
+     size_t i;
 
      printf("N:\t");
      for (i = 0; i < fc->n_num; i++) {
@@ -189,7 +189,7 @@ ztf_update_outputs( struct ztf *fc, double input )
 /* the new input is assumed to be already in fc, so there is no need
  * to update fc buffers */
 double
-ztf_compute_output(struct ztf *fc, double input)
+ztf_compute_output(struct ztf *fc)
 {
      size_t i;
      double output = 0.0;
@@ -218,7 +218,7 @@ ztf_update_and_compute( struct ztf *fc, double input )
      double output;
 
      ztf_update_inputs(fc, input );
-     output = ztf_compute_output(fc, input);
+     output = ztf_compute_output(fc);
      ztf_update_outputs(fc, output );
 
      return output;
