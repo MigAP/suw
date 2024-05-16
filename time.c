@@ -22,7 +22,7 @@ main(int argc, char *argv[])
 {
 
      int opt;
-     double ti=0.0, tf=0.0, ts=0.0;
+     double ti=0.0, tf=1.0, ts=0.0;
      double t;
 
      if ( argc < MIN_ARGC ) {
