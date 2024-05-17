@@ -27,5 +27,7 @@ z-cl: z-cl.o util.o z-tf.o
 tests: tests.o
 	$(CC) -o tests tests.o util.o z-tf.o
 
-clear:
+all_tests: 
+	./tests_input_output.sh && ./tests
+clean:
 	rm *.o step time z-tr-fc z-cl
