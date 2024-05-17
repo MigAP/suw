@@ -136,7 +136,7 @@ main(int argc, char *argv[])
 	  printf("%.*g\t", PRECISION, reference); 
 	  printf("%.*g\t", PRECISION, error); 
 	  printf("%.*g\t", PRECISION, control); 
-	  printf("%.*g\t", PRECISION, output); 
+	  printf("%.*g\n", PRECISION, output); 
 
 	  free(time_str);
 	  free(reference_str);
