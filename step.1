@@ -1,0 +1,43 @@
+.Dd $Mdocdate$
+.Dt STEP 1
+.Os
+.Sh NAME
+.Nm step
+.Nd generates a step signal 
+.Sh SYNOPSIS
+.Nm
+.Op Fl i Ar ivalue
+.Op Fl f Ar fvalue
+.Op Fl t Ar tstep
+.Sh DESCRIPTION
+.Nm
+generates step signal with an value of  
+.Ar ivalue
+and a final value of 
+.Ar fvalue , 
+the step is applied when the time vector read from standard input is equal to 
+.Ar tstep.
+.Pp
+The options are as follows:
+.Bl -tag -width Ds
+.It Fl i Ar ivalue 
+Step inital value specified by
+.Ar ivalue . 
+.It Fl f Ar fvalue 
+Step final value specified by
+.Ar ftime . 
+.It Fl t Ar tstep
+.Ar tstep
+specifies the time when the output signal changes from
+.Ar ivalue 
+to
+.Ar fvalue .
+.El
+.Sh EXAMPLES
+.Dl $ time -i 0.0 -f 3.0 -s 1  | step -i 1 -f 2 -t 2
+.Dl 0	1
+.Dl 1	1
+.Dl 2	2
+.Dl 3	2
+.Sh AUTHORS
+.An Miguel Arpa Perozo Aq Mt miguel.arpa.p@gmail.com

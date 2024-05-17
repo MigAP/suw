@@ -1,0 +1,44 @@
+.Dd $Mdocdate$
+.Dt Z-TR-FC 1
+.Os
+.Sh NAME
+.Nm z-tr-fc
+.Nd computes the output of a transfer function
+.Sh SYNOPSIS
+.Nm
+.Op Fl f Ar ztf_file
+.Op Fl i Ar ivalue
+.Sh DESCRIPTION
+.Nm
+computes the output of a transfert function specified by the file  
+.Ar ztf_file
+and considering an initial value of 
+.Ar ivalue . 
+The options are as follows:
+.Bl -tag -width Ds
+.It Fl f Ar ztf_file 
+File that specifies the transfert function. The format of the file is:
+.sp
+N b0 b1 ... bm
+.br
+D a0 a1 ... an
+.sp
+where the bi and ai represent the tansfert function coefficients for
+the element z^{-i}:
+.sp
+G(z) = N(z) / D(z)
+.sp
+G(z) =
+.sp
+b0 + b1 * z^{-1} + b2 * z^{-2} + ... + bm * z^{m}
+.br
+---------------------------------------------------
+.br
+a0 + a1 * z^{-1} + a2 * z^{-2} + ... + am * z^{m}
+.RE
+.It Fl i Ar ivalue 
+Sets the intial value of the transfert function which is equal to
+.Ar ivalue . 
+.El
+.Sh AUTHORS
+.An Miguel Arpa Perozo Aq Mt miguel.arpa.p@gmail.com
