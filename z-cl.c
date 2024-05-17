@@ -131,7 +131,12 @@ main(int argc, char *argv[])
 	  control = ztf_update_and_compute(&cf, error);
 	  output = ztf_update_and_compute(&sf, control);
 
-	  printf("%2$.*1$g\t%3$.*1$g\t%4$.*1$g\t%5$.*1$g\t%6$.*1$g\n", PRECISION, time, reference, error, control, output);
+	  /* printf("%2$.*1$g\t%3$.*1$g\t%4$.*1$g\t%5$.*1$g\t%6$.*1$g\n", PRECISION, time, reference, error, control, output); */
+	  printf("%.*g\t", PRECISION, time); 
+	  printf("%.*g\t", PRECISION, reference); 
+	  printf("%.*g\t", PRECISION, error); 
+	  printf("%.*g\t", PRECISION, control); 
+	  printf("%.*g\t", PRECISION, output); 
 
 	  free(time_str);
 	  free(reference_str);

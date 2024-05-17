@@ -51,9 +51,13 @@ main(int argc, char *argv[])
 	  time = strtod(line, NULL); 
 
 	  if ( time < st ) {
-	       printf("%2$.*1$g\t%3$.*1$g\n", PRECISION, time, vi);
+	       /* printf("%2$.*1$g\t%3$.*1$g\n", PRECISION, time, vi); */
+	       printf("%.*g\t", PRECISION, time); 
+	       printf("%.*g\n", PRECISION, vi); 
 	  } else {
-	       printf("%2$.*1$g\t%3$.*1$g\n", PRECISION, time, vf);
+	       /* printf("%2$.*1$g\t%3$.*1$g\n", PRECISION, time, vf); */
+	       printf("%.*g\t", PRECISION, time); 
+	       printf("%.*g\n", PRECISION, vf); 
 	  }
      }
 
