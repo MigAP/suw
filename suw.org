@@ -58,3 +58,4 @@ Parameters:
   (see how numtools handles-it)
   - =printf("%.*g", prec, val);=
 - [ ] Solve compilation warnings from the modified compiler flags
+- [ ] feedback loop with graphviz https://sketchviz.com/flowcharts-in-graphviz
