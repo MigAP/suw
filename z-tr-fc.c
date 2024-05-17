@@ -59,7 +59,7 @@ main(int argc, char *argv[])
      }
 
      /* Import transfer function */
-     if ( strlen(fname) != 0 ) {
+     if ( fname != NULL ) {
 	  f_fc = fopen(fname,"r");
      }
 

@@ -38,6 +38,11 @@ ztf_set_num ( struct ztf *fc, double num[], size_t n_num )
 {
      size_t i;
 
+     if ( num == NULL ) {
+	  fprintf(stderr, "num[] points to NULL");
+	  return ERROR;
+     }
+
      if ( n_num != fc->n_num ) {
 	  fprintf(stderr, "fc->n_num and n_num are not equal\n");
 	  return ERROR;
@@ -53,6 +58,11 @@ int
 ztf_set_denom ( struct ztf *fc, double denom[], size_t n_denom )
 {
      size_t i;
+     if ( denom == NULL) {
+	  fprintf(stderr, "denom points to NULL");
+	  return ERROR;
+     }
+
      if ( n_denom != fc->n_denom ) {
 	  fprintf(stderr, "fc->n_denom and n_denom are not equal\n");
 	  return ERROR;
@@ -313,7 +323,7 @@ ztf_import(struct ztf *fc, FILE *f )
      char *lineptr = NULL;
      size_t line_size;
      double *num = NULL, *denom = NULL; 
-     size_t nnum, ndenom; 
+     size_t nnum = 0, ndenom = 0; 
 
      /* import the numerator and deminator coefficients from FILE */
      while ( getline(&lineptr, &line_size, f) != EOF ) {

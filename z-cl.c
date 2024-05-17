@@ -70,24 +70,29 @@ main(int argc, char *argv[])
 	  }
      }
      /* Import system and controller transfer functions */
-     if ( strlen(sfname) != 0 ) {
+     if ( sfname != NULL ) {
 	  sfile = fopen(sfname, "r");
      }
 
      if ( sfile == NULL ) {
 	  fprintf(stderr, "Unable to open system transfer function file\n");
+	  exit(EXIT_FAILURE);
      }
-     ztf_import(&sf, sfile);
-     fclose(sfile);
-     free(sfname);
-
-     if ( strlen(cfname) != 0 ) {
+     
+     if ( cfname != NULL ) {
 	  cfile = fopen(cfname, "r");
      }
 
      if ( cfile == NULL ) {
 	  fprintf(stderr, "Unable to open controller transfer function file\n");
+	  exit(EXIT_FAILURE);
      }
+
+     /* import transfert functions and free resources */
+     ztf_import(&sf, sfile);
+     fclose(sfile);
+     free(sfname);
+
      ztf_import(&cf, cfile);
      fclose(cfile);
      free(cfname);
