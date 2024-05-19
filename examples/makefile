@@ -44,5 +44,5 @@ z-tf-first-order-response.pdf: z-tf-first-order-response.dat
 z-tf-first-order-cl.pdf: z-tf-first-order-cl.dat
 	gnuplot plot_cl_first_order.gnu
 
-clear:
+clean:
 	rm *.dat *.pdf
