@@ -45,17 +45,8 @@ Parameters:
 Parameters:
 - r: resolution
 * TODO Todolist
-- [X] use =double= everywhere
 - [ ] check error for conversion from string to double
-- [ ] Unit test functions (see how numtools test its functions)
-- [ ] man pages documentation
-- [X] improve makefile: separate project compilation and simulations
 - [ ] Example for the control of a continuous motor with discretized
   model.
-- [X] Fix segfault when =z-tr-fc= and =z-cl= are called without
-  arguments.
-- [X] Add a parameter to specify the desired precision for a program
-  (see how numtools handles-it)
-  - =printf("%.*g", prec, val);=
-- [ ] Solve compilation warnings from the modified compiler flags
 - [ ] feedback loop with graphviz https://sketchviz.com/flowcharts-in-graphviz
+- [ ] Improve =is_equal= float comparison.
