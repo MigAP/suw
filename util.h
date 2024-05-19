@@ -7,7 +7,7 @@
 #include <errno.h>
 
 #define PRECISION (-17)		   /* printf precision */
-#define EQUALITY_THRESHOLD (1e-12) /* value used to test floats equality */
+#define EQUALITY_THRESHOLD (1e-6) /* value used to test floats equality */
 #define TOKEN_DELIM " \t"	   /* whitespace or tab */
 #define ERROR (-1) 
 #define SUCCESS (0) 
