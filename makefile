@@ -25,7 +25,7 @@ z-tr-fc: z-tr-fc.o util.o z-tf.o
 z-cl: z-cl.o util.o z-tf.o
 	$(CC) -o z-cl z-cl.o util.o z-tf.o
 
-tests: tests.o
+tests: tests.o util.o z-tf.o
 	$(CC) -o tests tests.o util.o z-tf.o
 
 all_tests: 
