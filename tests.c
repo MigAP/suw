@@ -123,5 +123,7 @@ int main()
 
      assert( is_equal(output, -1.0) ); 
 
+     ztf_free(&tf_imported); 
+
      return 0;
 }
