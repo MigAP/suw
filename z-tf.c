@@ -357,5 +357,8 @@ ztf_import(struct ztf *fc, FILE *f )
      ztf_set_num(fc, num, nnum);
      ztf_set_denom(fc, denom, ndenom);
 
-     return SUCCESS; 
+     free(num);
+     free(denom); 
+
+     return rval; 
 }
