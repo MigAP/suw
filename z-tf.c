@@ -15,7 +15,7 @@
 static void
 usage()
 {
-     fprintf(stderr, "Usage: z-tr-fc [-f path to transfer function]\n [-i initial output value]\n");
+     fprintf(stderr, "Usage: z-tf [-f path to transfer function]\n [-i initial output value]\n");
 }
 
 int
@@ -94,7 +94,7 @@ main(int argc, char *argv[])
 	       exit(EXIT_FAILURE);
 	  }
 
-	  /* TODO: See z-tr-fc for error handling */
+	  /* TODO: See z-tf for error handling */
 	  time = strtod(time_str, NULL);
 	  input = strtod(input_str, NULL);
 	  output = ztf_update_and_compute( &fc, input );
