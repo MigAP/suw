@@ -234,92 +234,9 @@ ztf_update_and_compute( struct ztf *fc, double input )
      return output;
 }
 
-/* counts the number of tokens in string s, tokens are defined in
- * TOKEN_DELIM */
-size_t
-count_tokens(char *s )
-{
-     char *stok = NULL;  
-     char *tok = NULL; 
-     size_t ntok = 0;  
 
-     stok = strdup(s); /* necessary because strtok modifies its input */
-     tok = strtok(stok, TOKEN_DELIM);
 
-     /* count number of double */
-     while ( tok != NULL ) {
-	  ntok++; 
-	  /* find next token */
-	  tok = strtok(NULL, TOKEN_DELIM);
-     }
 
-     free(stok); 
-
-     return ntok; 
-}
-
-/* allocates an array of double da from a string s. It assumes that
- * *da == NULL */
-int
-str_to_darr( char *s, double **da , size_t *nda)
-{
-
-     char *stok = NULL;  	/* s duplicate necessary to use strtok()*/
-     char *tok = NULL; 		/* pointer to tokens */
-     char *endptr = NULL; 	/* used for strtod */
-     size_t i = 0; 
-     double val; 
-
-     *nda = count_tokens( s );
-
-     /* allocate array of doubles of size nda */
-     if ( *nda != 0 && *da == NULL) {
-	  *da = (double *) malloc( (*nda) * sizeof(double) ); 
-
-	  if ( *da == NULL ) {
-	       fprintf(stderr, "str_to_darr: unable to allocate array of doubles\n"); 
-	       return ERROR; 
-	  }
-
-     } else {
-	  fprintf(stderr, "str_to_darr: string has no tokens to parse\n");
-	  return ERROR; 
-     }
-
-     /* duplicate s because strtok modifies its input */
-     stok = strdup(s); 
-
-     /* Look for the tokens, convert them to double and store them in
-      * da */
-     tok = strtok(stok, TOKEN_DELIM); 
-     while ( tok != NULL ) {
-
-	  errno = 0;    /* To distinguish success/failure after call */
-	  val = strtod(tok, &endptr);
-
-	  /* Check for various possible errors. */
-	  if (errno != 0) {
-	       fprintf(stderr, "str_to_darr: could not convert to double\n");
-	       return ERROR;
-	  }
-
-	  if (endptr == tok) {
-	       fprintf(stderr, "str_to_darr: no digits were found\n");
-	       return ERROR;
-	  }
-
-	  *( (*da) + i ) = val;
-	  /* printf("val: %f, **va: %f\n", val, *((*da) + i));  */
-	  i++; 
-
-	  /* find next token */
-	  tok = strtok(NULL, TOKEN_DELIM); 
-     }
-
-     free(stok); 
-
-     return SUCCESS; 
-}
 
 int
 ztf_import(struct ztf *fc, FILE *f )
