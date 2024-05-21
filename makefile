@@ -4,7 +4,7 @@ CC=gcc
 # CFLAGS=-Wall -Wextra -fanalyzer -g -pedantic-errors -std=c99 -D_POSIX_C_SOURCE=200809L
 CFLAGS=-Wall -Wextra -fanalyzer -pedantic-errors -std=c99 -D_POSIX_C_SOURCE=200809L -O2
 LIBS= -lm
-DEPS= util.h z-tf.h
+DEPS= util.h z-utils.h
 
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
@@ -18,14 +18,14 @@ step: step.o util.o
 disc-1-ord-filt: disc-1-ord-filt.o util.o
 	$(CC) -o disc-1-ord-filt disc-1-ord-filt.o util.o
 
-z-tr-fc: z-tr-fc.o util.o z-tf.o
-	$(CC) -o z-tr-fc z-tr-fc.o util.o z-tf.o
+z-tr-fc: z-tr-fc.o util.o z-utils.o
+	$(CC) -o z-tr-fc z-tr-fc.o util.o z-utils.o
 
-z-cl: z-cl.o util.o z-tf.o
-	$(CC) -o z-cl z-cl.o util.o z-tf.o
+z-cl: z-cl.o util.o z-utils.o
+	$(CC) -o z-cl z-cl.o util.o z-utils.o
 
-tests: tests.o util.o z-tf.o
-	$(CC) -o tests tests.o util.o z-tf.o
+tests: tests.o util.o z-utils.o
+	$(CC) -o tests tests.o util.o z-utils.o
 
 all_tests: 
 	./tests_input_output.sh && ./tests

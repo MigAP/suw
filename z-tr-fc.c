@@ -6,7 +6,7 @@
 #include <unistd.h>
 
 #include "util.h"
-#include "z-tf.h"
+#include "z-utils.h"
 
 #define MIN_ARGC (2)				/* minimal number of arguments */
 #define COL_TIME (1)

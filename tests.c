@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <assert.h>
 #include "util.h"
-#include "z-tf.h"
+#include "z-utils.h"
 
 
 int main()
@@ -11,7 +11,7 @@ int main()
      assert(is_equal(1.0, 1.0));
      assert( count_tokens("a\tb\tc") == 3); ;
 
-     /* z-tf tests */
+     /* z-utils tests */
      struct ztf sf;		 /* system transfert function */
      double s_n[] = { 1.0 };     /* numerator */
      unsigned int s_nn = 1;	 /* numerator size */

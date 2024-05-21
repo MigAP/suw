@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
-#include "z-tf.h"
+#include "z-utils.h"
 
 #define MIN_ARGC (4)				/* minimal number of arguments */
 #define COL_TIME (1)
