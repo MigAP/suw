@@ -328,29 +328,31 @@ ztf_import(struct ztf *fc, FILE *f )
      size_t line_size;
      double *num = NULL, *denom = NULL; 
      size_t nnum = 0, ndenom = 0; 
+     int rval = SUCCESS; 	/* return value */
 
      /* import the numerator and deminator coefficients from FILE */
      while ( getline(&lineptr, &line_size, f) != EOF ) {
 
 	  /* remove end of line '\n' character */
-	  lineptr[strcspn(lineptr, "\n")] = '\0'; 
+	  lineptr[strcspn(lineptr, "\n")] = '\0';
 
 	  if ( *lineptr == NUMERATOR_CHAR ) {
-	       if( str_to_darr( ++lineptr, &num , &nnum) ) {
+	       if( str_to_darr( (lineptr + 1), &num , &nnum) ) {
 		    fprintf(stderr, "ztf_import: could not parse line from file\n"); 
-		    return ERROR;
+		    rval =  ERROR;
 	       }
 	  } else if ( *lineptr == DENOMINATOR_CHAR ) {
-	       if( str_to_darr( ++lineptr, &denom , &ndenom) ) {
+	       if( str_to_darr( (lineptr + 1), &denom , &ndenom) ) {
 		    fprintf(stderr, "ztf_import: could not parse line from file\n"); 
-		    return ERROR;
+		    rval =  ERROR;
 	       }
 	  } else {
 	       fprintf(stderr, "ztf_import: unknown line identifier %s: \n", lineptr); 
-	       return ERROR;
+	       rval =  ERROR;
 	  }
 
      }
+     free(lineptr);
 
      if ( ztf_allocate(fc, nnum, ndenom) ) {
 	  fprintf(stderr, "ztf_import: unable to allocate transfer function\n"); 
