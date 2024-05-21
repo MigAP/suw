@@ -258,7 +258,8 @@ count_tokens(char *s )
      return ntok; 
 }
 
-/* allocates an array of double da from a string s */
+/* allocates an array of double da from a string s. It assumes that
+ * *da == NULL */
 int
 str_to_darr( char *s, double **da , size_t *nda)
 {
@@ -272,7 +273,7 @@ str_to_darr( char *s, double **da , size_t *nda)
      *nda = count_tokens( s );
 
      /* allocate array of doubles of size nda */
-     if ( *nda != 0 ) {
+     if ( *nda != 0 && *da == NULL) {
 	  *da = (double *) malloc( (*nda) * sizeof(double) ); 
 
 	  if ( *da == NULL ) {
