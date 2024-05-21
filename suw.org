@@ -45,8 +45,7 @@ Parameters:
 Parameters:
 - r: resolution
 * TODO Todolist
+- [ ] Improve =is_equal= float comparison.
 - [ ] check error for conversion from string to double
 - [ ] Example for the control of a continuous motor with discretized
   model.
-- [ ] feedback loop with graphviz https://sketchviz.com/flowcharts-in-graphviz
-- [ ] Improve =is_equal= float comparison.
