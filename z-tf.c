@@ -315,6 +315,9 @@ str_to_darr( char *s, double **da , size_t *nda)
 	  /* find next token */
 	  tok = strtok(NULL, TOKEN_DELIM); 
      }
+
+     free(stok); 
+
      return SUCCESS; 
 }
 
