@@ -104,8 +104,8 @@ main(int argc, char *argv[])
 	  printf("%.*g\t", PRECISION, input); 
 	  printf("%.*g\n", PRECISION, output); 
 
-	  free(input_str); 
 	  free(time_str);
+	  free(input_str); 
      }
      free(line); 
 
