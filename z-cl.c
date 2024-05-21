@@ -141,6 +141,7 @@ main(int argc, char *argv[])
 	  free(time_str);
 	  free(reference_str);
      }
+     free(line); 
 
      ztf_free(&sf);
      ztf_free(&cf);
