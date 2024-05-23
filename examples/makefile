@@ -14,7 +14,7 @@ step.dat:
 filt.dat:
 	../time -i 0 -f 10 -s 0.001 | \
 	../step -i 2 -f 3 -t 5 | \
-	../disc-1-ord-filt -a 0.95 -i 2 > filt.dat
+	../filt-1ord -a 0.95 -i 2 > filt.dat
 
 z-tf-first-order-response.dat: z_first_order_model.txt
 	../time -i 0 -f 2 -s 0.01 | \
