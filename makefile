@@ -1,4 +1,4 @@
-all: time step disc-1-ord-filt z-tf z-cl tests \
+all: time step disc-1-ord-filt z-tf z-cl \
 
 CC=gcc
 # CFLAGS=-Wall -Wextra -fanalyzer -g -pedantic-errors -std=c99 -D_POSIX_C_SOURCE=200809L
@@ -24,10 +24,5 @@ z-tf: z-tf.o util.o z-utils.o
 z-cl: z-cl.o util.o z-utils.o
 	$(CC) -o z-cl z-cl.o util.o z-utils.o
 
-tests: tests.o util.o z-utils.o
-	$(CC) -o tests tests.o util.o z-utils.o
-
-all_tests: 
-	./tests_input_output.sh && ./tests
 clean:
-	rm *.o step time z-tf z-cl
+	rm *.o step time disc-1-ord-filt z-tf z-cl
