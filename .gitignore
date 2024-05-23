@@ -7,5 +7,6 @@ disc-1-ord-filt
 step
 time
 z-tr-fc
+z-tf
 z-cl
-tests
+tmp/
