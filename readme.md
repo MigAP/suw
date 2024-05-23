@@ -30,6 +30,6 @@ Different tests are available:
 1. The executable `tests` to test the "low level" functionalities of
    the code.
 2. The shell script `tests_input_output.sh` to test the input and
-   ouput of the blocks individually.
+   output of the blocks individually.
 3. Different tests using [](https://valgrind.org/) are grouped
    together in a shell script `valgrind_tests/run_valgrind_tests.sh`.
