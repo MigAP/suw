@@ -25,11 +25,11 @@ To run the simulation examples run `make` in the `examples` directory.
 
 ## Tests
 
-Different tests are available: 
+Different tests are available in the `tests` directory:
 
 1. The executable `tests` to test the "low level" functionalities of
    the code.
-2. The shell script `tests_input_output.sh` to test the input and
-   output of the blocks individually.
+2. The shell script `tests_input_output.sh` tests only the output of a
+   block.
 3. Different tests using [](https://valgrind.org/) are grouped
    together in a shell script `valgrind_tests/run_valgrind_tests.sh`.
