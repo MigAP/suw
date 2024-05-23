@@ -7,4 +7,4 @@ set grid
 
 plot "z-tf-first-order-response.dat" \
   using 1:2 with lines title "step","" \
-  using 1:3 with lines title "output"
+  using 1:3 with lines title "output",""
