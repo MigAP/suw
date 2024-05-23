@@ -3,10 +3,11 @@
 *.pdf
 *.dat
 .tags
-disc-1-ord-filt
+filt-1ord
 step
 time
 z-tr-fc
 z-tf
 z-cl
 tmp/
+tests/tests
