@@ -1,11 +1,12 @@
 # Simulink the Unix Way 
 
 This repository gathers different executables to run simple
-simulations involving discrete transfert functions. The project is
-heavily inspired from [](https://adamsgaard.dk/unix-for-science.html).
+simulations involving discrete transfer functions from the command
+line. The project is inspired from the talk
+[Unix Principles for Science Simulations](https://adamsgaard.dk/unix-for-science.html).
 
 Each executable is the equivalent of a *block* in Simulink. A
-simulation consist of a shell script or a makefile calling different
+simulation consists of a shell script or a makefile calling different
 executables. Each *block* has its corresponding `manpage`, e.g., run
 `man step.1` to read the documentation of `step`.
 
