@@ -10,8 +10,8 @@ simulation consists of a shell script or a makefile calling different
 executables. Each *block* has its corresponding `manpage`, e.g., run
 `man step.1` to read the documentation of `step`.
 
-You can find more information about the project in:
-[](https://www.mig-ap.com)
+You can find more information and documentation about the project
+through this [link](https://mig-ap.com/posts/suw/)
 
 Current implemented *blocks*:
 - time
