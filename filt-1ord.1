@@ -1,0 +1,37 @@
+.Dd $Mdocdate$
+.Dt FILT-1ORD 1
+.Os
+.Sh NAME
+.Nm filt-1ord
+.Nd Filters its input using a first order discrete low-pass filter 
+.Sh SYNOPSIS
+.Nm
+.Op Fl a Ar alpha
+.Op Fl i Ar ivalue
+.Sh DESCRIPTION
+.Nm
+filters its input using a first order discrete low-pass filter such
+that:
+
+y_k = (1 -
+.Ar alpha
+) * u_k  +
+.Ar alpha
+y_{k-1}
+
+The initial value of the block is given by
+.Ar ivalue .
+
+The options are as follows:
+.Bl -tag -width Ds
+.It Fl a Ar alpha 
+Specifies the parameter of the first order low pass filter, where
+0 < 
+.Ar alpha
+< 1.
+.It Fl i Ar ivalue 
+Inital value specified by
+.Ar ivalue . 
+.El
+.Sh AUTHORS
+.An Miguel Arpa Perozo Aq Mt miguel.arpa.p@gmail.com

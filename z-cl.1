@@ -1,0 +1,73 @@
+.Dd $Mdocdate$
+.Dt Z-CL 1
+.Os
+.Sh NAME
+.Nm z-cl
+.Nd feedback loop simulation
+.Sh SYNOPSIS
+.Nm
+.Op Fl s Ar ztf_file_s
+.Op Fl c Ar ztf_file_c
+.Op Fl i Ar ivalue_s
+.Op Fl j Ar ivalue_c
+.Sh DESCRIPTION
+.Nm
+feedback loop simulation of a system G(z) with a controller C(z) where
+the transfert function of G(z) is specified by the file
+.Ar ztf_file_s
+and considering an initial value of 
+.Ar ivalue_s . 
+The transfert function of C(z) is specified by
+.Ar ztf_file_c
+and its initial value by
+.Ar ivalue_c .
+The transfer function of the system is: 
+
+.sp
+.nf
+.TA
+                         +--------+         +--------+
+       R(z)  -----  E(z) |        |  U(z)   |        | Y(z)
+      ------(+ -  )------+  C(z)  +---------+  G(z)  +------+
+             --+--       |        |         |        |      |
+               |         +--------+         +--------+      |
+               |                                            |
+               |                                            |
+               +--------------------------------------------+
+.fi
+.sp
+
+The options are as follows:
+.Bl -tag -width Ds
+.It Fl s Ar ztf_file_s
+File that specifies the system G(z) transfert function. The format of
+the file is:
+.sp
+N b0 b1 ... bm
+.br
+D a0 a1 ... an
+.sp
+where the bi and ai represent the transfer function coefficients for
+the element z^{-i}:
+.sp
+G(z) = N(z) / D(z)
+.sp
+G(z) =
+.sp
+b0 + b1 * z^{-1} + b2 * z^{-2} + ... + bm * z^{m}
+.br
+---------------------------------------------------
+.br
+a0 + a1 * z^{-1} + a2 * z^{-2} + ... + am * z^{m}
+.RE
+.It Fl c Ar ztf_file_c 
+Controller transfert function, see the
+.Op Fl f
+option above for a description of the file format.
+.It Fl i Ar ivalue_s 
+Initial value of the system transfert function
+.It Fl j Ar ivalue_c 
+Initial value of the controller transfert function
+.El
+.Sh AUTHORS
+.An Miguel Arpa Perozo Aq Mt miguel.arpa.p@gmail.com

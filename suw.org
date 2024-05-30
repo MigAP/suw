@@ -1,0 +1,48 @@
+#+title: Simulink the Unix Way
+#+startup: indent
+
+* "Blocks"
+** time 
+Parameters:
+- i: initial time
+- f: final time
+- s: timestep
+  
+** step
+Requires a time stream as a vector
+
+Parameters
+- i: initial value
+- f: final value
+- t: step time
+  
+** z-1-ord-filt
+Parameters:
+- a: pole of the first order filter
+- (i): initial value for the filter initialization
+  
+** z-tf
+Parameters
+- f: file describing the transfert function
+- i: initial output value 
+
+Format:
+N: b0 b1 ... bm
+D: a0 a1 ... an
+
+** z-cl 
+Parameters:
+- c: path to the file describing the controller transfert function
+- s: path to the file describing the system transfert function
+- i: system initial output value
+- j: controller initial output value
+
+* TODO Todolist
+- [ ] Improve =is_equal= float comparison.
+- [ ] check error for conversion from string to double
+- [ ] Example for the control of a continuous motor with discretized
+  model.
+- [ ] z-pid utility where only a system transfert function is given
+  and the gains of the PID ?
+- [ ] better error handling for =z-tf=
+- [ ] Write input/output tests for =z-tf= and =z-cl=

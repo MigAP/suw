@@ -1,0 +1,13 @@
+*~
+*.o
+*.pdf
+*.dat
+.tags
+filt-1ord
+step
+time
+z-tr-fc
+z-tf
+z-cl
+tmp/
+tests/tests

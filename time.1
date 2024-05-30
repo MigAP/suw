@@ -1,0 +1,43 @@
+.Dd $Mdocdate$
+.Dt TIME 1
+.Os
+.Sh NAME
+.Nm time
+.Nd generates a time vector 
+.Sh SYNOPSIS
+.Nm
+.Op Fl i Ar itime
+.Op Fl f Ar ftime
+.Op Fl s Ar tstep
+.Sh DESCRIPTION
+.Nm
+generates an evenly spaced time vector from 
+.Ar itime
+to
+.Ar ftime
+with a timestep specified by
+.Ar tstep.
+.Nm time
+is usually the first program used for a simulation.
+.Pp
+The options are as follows:
+.Bl -tag -width Ds
+.It Fl i Ar itime 
+Sets the intial time specified by
+.Ar delimstr . 
+The default value is 0.0.
+.It Fl f Ar ftime 
+Sets the final time specified by
+.Ar ftime . 
+The default value is equal to 1.0
+.It Fl s Ar tstep
+Timestep used for the simulation with a resolution of
+.Ar tstep .
+.El
+.Sh EXAMPLES
+.Dl $ time -i 1.0 -f 2.0 -s 0.5 
+.Dl 1 
+.Dl 1.5 
+.Dl 2
+.Sh AUTHORS
+.An Miguel Arpa Perozo Aq Mt miguel.arpa.p@gmail.com
